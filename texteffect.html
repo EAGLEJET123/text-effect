@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Typing Effect</title>
+ 
+
+  <style type="text/css">
+    .hero {
+  height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  color: #fff; background: linear-gradient(120deg, #0f0f0f, #1c1c1c);
+}
+.hero h1 { font-size: 3rem; }
+.hero h1 span { color: #ff6a00; }
+.hero h2 { font-size: 1.5rem; margin: 1rem 0; height: 40px; }
+
+  </style>
+</head>
+
+
+<body>
+<!-- Hero -->
+  <section id="home" class="hero">
+    <h1>Hello, I'm <span>Eagle</span></h1>
+    <h2 class="typing"></h2>
+  </section>
+  
+
+
+  <script type="text/javascript">
+    const typingElement = document.querySelector(".typing");
+const textArray = ["Frontend Developer", "3D Front Enthusiast", "Problem Solver"];
+let textIndex = 0, charIndex = 0;
+
+function type() {
+  if (charIndex < textArray[textIndex].length) {
+    typingElement.textContent += textArray[textIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, 100);
+  } else {
+    setTimeout(erase, 2000);
+  }
+}
+function erase() {
+  if (charIndex > 0) {
+    typingElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(erase, 50);
+  } else {
+    textIndex = (textIndex + 1) % textArray.length;
+    setTimeout(type, 500);
+  }
+}
+document.addEventListener("DOMContentLoaded", type);
+  </script>
+</body>
+</html>
